@@ -1,8 +1,8 @@
-## Welcome to the todoapi!
+# Welcome to the todoapi
 
 The todoapi is a simple REST API that allows users to create, read, update, and delete (CRUD) todo items.
 
-### Getting Started
+## Getting Started
 
 To get started with the todoapi, you will need to clone the repository from GitHub:
 
@@ -17,7 +17,7 @@ cd todoapi
 npm install
 ```
 
-### Running the API
+## Running the API
 
 To run the API, you can use the following command:
 
@@ -27,7 +27,7 @@ npm start
 
 The API will be running on port 3000.
 
-### Using the API
+## Using the API
 
 The todoapi provides the following endpoints:
 
@@ -37,7 +37,7 @@ The todoapi provides the following endpoints:
 * `/todos/:id` - Updates a todo item with the specified ID.
 * `/todos/:id` - Deletes a todo item with the specified ID.
 
-### Contributing
+## Contributing
 
 If you would like to contribute to the todoapi project, please fork the repository and submit a pull request.
 
