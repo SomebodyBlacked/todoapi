@@ -1,6 +1,6 @@
-## Welcome to the todoapi wiki!
+## Welcome to the todoapi!
 
-This wiki is a resource for developers who want to learn about and use the todoapi project. The todoapi is a simple REST API that allows users to create, read, update, and delete (CRUD) todo items.
+The todoapi is a simple REST API that allows users to create, read, update, and delete (CRUD) todo items.
 
 ### Getting Started
 
