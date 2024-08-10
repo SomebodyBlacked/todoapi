@@ -15,6 +15,7 @@
       "rangav.vscode-thunder-client"
       "humao.rest-client"
       "monokai.theme-monokai-pro-vscode"
+      "emmanuelbeziat.vscode-great-icons"
     ];
     workspace = {
       # Runs when a workspace is first created with this `dev.nix` file
