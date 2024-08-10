@@ -1,5 +1,6 @@
 import express from 'express';
 import turso from './db.js';
+import { getTodos, getTodoById, createTodo, deleteTodo, updateTodo } from './todo_controller.js';
 
 const app = express();
 
@@ -14,14 +15,11 @@ app.get("/now", async (req, res) => {
   res.json(result);
 })
 
-app.get("/todos", (req, res) => {
-  const todos = [
-    { id: 1, title: "Todo 1" },
-    { id: 2, title: "Todo 2" },
-    { id: 3, title: "Todo 3" },
-  ];
-  res.json(todos);
-})
+app.get("/todos", getTodos);
+app.get("/todos/:id", getTodoById);
+app.post("/todos", createTodo);
+app.put("/todos/:id", updateTodo);
+app.delete("/todos/:id", deleteTodo);
 
 const port = parseInt(process.env.PORT) || 3000;
 
