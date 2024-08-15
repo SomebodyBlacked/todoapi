@@ -3,7 +3,7 @@ import turso from './db.js';
 export async function getTodos(req, res) {
     try {
         const todos = await turso.execute('SELECT * FROM todos');
-        res.json(todos);
+        res.json(todos.rows);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error fetching todos' });
@@ -13,11 +13,11 @@ export async function getTodos(req, res) {
 export async function getTodoById(req, res) {
     const { id } = req.params;
     try {
-        const todo = await turso.execute('SELECT * FROM todos WHERE id = ?', [id]);
-        if (todo.length === 0) {
+        const { rows } = await turso.execute('SELECT * FROM todos WHERE id = ?', [id]);
+        if (rows.length === 0) {
             return res.status(404).json({ message: 'Todo not found' });
         }
-        res.json(todo[0]);
+        res.json(rows[0]);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error fetching todo' });
@@ -25,9 +25,9 @@ export async function getTodoById(req, res) {
 };
 
 export async function createTodo(req, res) {
-    const { task } = req.body;
+    const { task } = req.query;
     try {
-        const newTodo = await turso.execute('INSERT INTO todos (task) VALUES (?)', [task]);
+        const newTodo = await turso.execute(`INSERT INTO todos (task) VALUES ('${task}')`);
         res.status(201).json({ message: 'Todo created', id: newTodo.insertId });
     } catch (error) {
         console.error(error);
@@ -37,9 +37,9 @@ export async function createTodo(req, res) {
 
 export async function updateTodo(req, res) {
     const { id } = req.params;
-    const { task } = req.body;
+    const { task } = req.query;
     try {
-        const updatedTodo = await turso.execute('UPDATE todos SET task = ? WHERE id = ?', [task, id]);
+        const updatedTodo = await turso.execute(`UPDATE todos SET task = '${task}' WHERE id = ${id}`);
         if (updatedTodo.affectedRows === 0) {
             return res.status(404).json({ message: 'Todo not found' });
         }

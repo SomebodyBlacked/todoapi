@@ -4,15 +4,16 @@ import { getTodos, getTodoById, createTodo, deleteTodo, updateTodo } from './tod
 
 const app = express();
 
-app.get('/', (req, res) => {
-  const name = process.env.NAME || 'World';
-  res.json({ message: `Hello ${name}!` });
+app.use(express.json());
+
+app.get('/', function (req, res) {
+  res.json({ message: `Hello World!` });
 });
 
-app.get("/now", async (req, res) => {
+app.get("/now", async function (req, res) {
   const query = "SELECT DATETIME('now');"
-  const result = await turso.execute(query);
-  res.json(result);
+  const { rows } = await turso.execute(query);
+  res.json(rows[0]);
 })
 
 app.get("/todos", getTodos);
@@ -23,6 +24,6 @@ app.delete("/todos/:id", deleteTodo);
 
 const port = parseInt(process.env.PORT) || 3000;
 
-app.listen(port, () => {
+app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });

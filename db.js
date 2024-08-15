@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { createClient } from "@libsql/client";
 
 export const turso = createClient({
